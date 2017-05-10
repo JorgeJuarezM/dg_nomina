@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#    * dg_nomina
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-05 22:46+0000\n"
+"PO-Revision-Date: 2017-05-05 22:46+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: dg_nomina
+#: code:addons/dg_nomina/models/hr_payslip_run_inherit.py:9
+#: model:ir.model.fields,field_description:dg_nomina.field_hr_payslip_run_worked_days
+#, python-format
+msgid "Dias laborados"
+msgstr "Dias laborados"
+
+#. module: dg_nomina
+#: model:ir.model,name:dg_nomina.model_hr_payslip_run
+msgid "Payslip Batches"
+msgstr "Procesamientos de nóminas"
+
+#. module: dg_nomina
+#: model:ir.ui.view,arch_db:dg_nomina.dg_nomina_payslip_run_form
+msgid "Period"
+msgstr "Periodo"

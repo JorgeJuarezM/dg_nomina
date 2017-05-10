@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_hr_payslip_by_employees" model="ir.ui.view">
+            <field name="name">hr_payroll_payslip_employees</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_by_employees"/>
+            <field name="model">hr.payslip.employees</field>
+            <field name="arch" type="xml">
+                <form position="replace">
+                    <form>
+                        <header>
+                            <field name="state" widget="statusbar"/>
+                        </header>
+
+
+                        <notebook>
+                            <page attrs="{'invisible': [('state', '!=', '01')]}">
+                                <group>
+                                    <label colspan="4" nolabel="1" string="Selecciona los empleados para los cuales quieres generar nomina."/>
+                                </group>
+                                <group>
+                                    <field name="payslip_type"/>
+                                </group>
+                                <field name="employee_ids"/>
+                            </page>
+                            
+                            <page attrs="{'invisible': [('state', '!=', '02')]}">
+                                <field name="rule_ids"/>
+                            </page>
+
+                        </notebook>
+
+                        <footer>
+ 
+                            <button icon="fa-cogs" string="Siguiente" class="oe_highlight" type="object" name="execute_type_02" attrs="{
+                                'invisible': [
+                                    '|', 
+                                    ('payslip_type', '!=', '02'), 
+                                    ('state', '!=', '01')
+                                ]}"/>
+
+                            <button string="Genera Nomina" class="oe_highlight" type="object" name="execute_type_02_finish" attrs="{
+                                'invisible': [
+                                    '|',
+                                    ('payslip_type', '!=', '02'),
+                                    ('state', '!=', '02')
+                                ]}"/>
+
+                            <button icon="fa-cogs" string="Genera Nomina" class="oe_highlight" type="object" attrs="{'invisible': [('payslip_type', '!=', '01')]}" name="execute_type_01"/>
+                        </footer>
+                    </form>
+                </form>
+            </field>
+        </record>
+
+        <record id="dg_nomina_payslip_run_form" model="ir.ui.view">
+            <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+            <field name="name">dg_nomina.payslip.run.form</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="arch" type="xml">
+                <form position="replace">
+                    <form string="Payslips Batches">
+                    <header>
+
+                        <button name="action_hr_payslip_by_employees" type="object" string="Generate Payslips" class="oe_highlight" states="draft"/>
+
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        
+                        <group col="4">
+                            <label for="date_start" string="Period"/>
+                             <div>
+                                   <field name="date_start" class="oe_inline"/> - <field name="date_end" class="oe_inline"/>
+                             </div>
+                            <field name="credit_note"/>
+                        </group>
+                        <group>
+                            <field name="worked_days" class="oe_inline"/>
+                            <field name="payslip_type" class="oe_inline"/>
+                        </group>
+                        <separator string="Payslips"/>
+                        <field name="slip_ids">
+                            <tree create="false" delete="false">
+                                <field name="number"/>
+                                <field name="employee_id"/>
+                                <field name="name"/>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                    </form>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

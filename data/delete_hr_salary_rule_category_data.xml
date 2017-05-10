@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+	<data>
+
+
+
+        <delete model="hr.payroll.structure" search="[('code', 'in', ['BASE'])]"/>
+
+        <delete model="hr.salary.rule" search="[('code', 'in', ['BASIC', 'GROSS', 'NET'])]"/>
+
+		<delete model="hr.salary.rule.category" search="[('code', 'in', ['BASIC', 'ALW', 'GROSS', 'DEDU', 'NET', 'COMP'])]"/>
+
+		<record id="BASE" model="hr.salary.rule.category">
+			<field name="name">Base</field>
+			<field name="code">BASE</field>
+		</record>
+
+		<record id="BRUTO" model="hr.salary.rule.category">
+			<field name="name">Bruto</field>
+			<field name="code">BRUTO</field>
+		</record>
+
+		<record id="DED" model="hr.salary.rule.category">
+			<field name="name">Deducción</field>
+			<field name="code">DED</field>
+		</record>
+
+		<record id="NETO" model="hr.salary.rule.category">
+			<field name="name">Neto</field>
+			<field name="code">NETO</field>
+		</record>
+
+
+		<record id="hr_rule_basic" model="hr.salary.rule">
+            <field name="name">Sueldo Base</field>
+            <field name="sequence" eval="1"/>
+            <field name="code">BASE</field>
+            <field name="category_id" ref="BASE"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+worked_days = payslip.worked_days
+#for line in payslip.worked_days_line_ids:
+#   worked_days += line.number_of_days
+
+result = contract.wage*worked_days
+            </field>
+        </record>
+
+
+
+         <record id="structure_base" model="hr.payroll.structure">
+            <field name="code">BASE</field>
+            <field name="name">Base Para nuevas estructuras</field>
+            <field eval="[(6, 0, [ref('hr_rule_basic')])]" name="rule_ids"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+	</data>
+</odoo>
