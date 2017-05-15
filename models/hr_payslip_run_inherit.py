@@ -21,6 +21,17 @@ class HrPayslipRun(models.Model):
                                     required=True,
                                     states={'draft': [('readonly', False)]})
 
+    state = fields.Selection([
+        ('draft', 'Draft'),
+        ('ready', 'Generated'),
+        ('done', 'Confirmed'),
+        ('close', 'Close'),
+    ], string='Status', index=True, readonly=True, copy=False, default='draft')
+
+    @api.multi
+    def close_payslip_run(self):
+        return self.write({'state': 'ready'})
+
     @api.onchange('date_start', 'date_end')
     def on_change_date_start_end(self):
 
@@ -55,3 +66,13 @@ class HrPayslipRun(models.Model):
             'target': 'new',
             'res_id': partial_id.id
         }
+
+    def action_hr_payslip_done(self):
+        # action_payslip_done
+        self.ensure_one()
+        for slip in self.slip_ids:
+            slip.action_payslip_done()
+        self.write({'state': 'done'})
+
+    def action_hr_payslip_close(self):
+        self.write({'state': 'close'})

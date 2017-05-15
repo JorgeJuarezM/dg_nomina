@@ -1,10 +1,205 @@
 from odoo import models, fields, api
+import logging
+import math
+
+_logger = logging.getLogger(__name__)
+
+
+class BrowsableObject(object):
+    def __init__(self, employee_id, dict, env):
+        self.employee_id = employee_id
+        self.dict = dict
+        self.env = env
+
+    def __getattr__(self, attr):
+        return attr in self.dict and self.dict.__getitem__(attr) or 0.0
 
 
 class HrPayslip(models.Model):
     _inherit = 'hr.payslip'
 
     worked_days = fields.Float('Dias Laborados', required=True, default=0)
+
+    def calc_sal_gravable(self):
+        self.ensure_one()
+        return self.calc_SDI() * self.worked_days
+
+    def calc_SDI(self):
+        self.ensure_one()
+
+        rule_ids = self.struct_id.rule_ids.ids
+        rules = self.env["hr.salary.rule"].search(
+            [("id", "in", rule_ids),
+             ("is_integrable", "=", True),
+             ("rule_type", "=", "PER")])
+
+        calc_salario_base = self.calc_rules(self.id, rules)
+        salario_base = calc_salario_base.SUM()
+
+        worked_days = self.worked_days
+        salario_diario = salario_base / worked_days
+
+        return salario_diario
+
+    def calc_rules(self, payslip_id, rules):
+
+        class CalcRules(object):
+            def __init__(self):
+                self.dict = dict()
+
+            def __getattr__(self, attr):
+                return attr in self.dict and self.dict.__getitem__(attr) or 0.0
+
+            def SUM(self):
+                _sum = 0
+                for attr in self.dict:
+                    _sum += self.dict.__getitem__(attr) or 0.0
+                return _sum
+
+            def addRule(self, rule_name, rule_amount):
+                self.dict[rule_name] = rule_amount
+
+        payslip = self.browse(payslip_id)
+        categories = BrowsableObject(payslip.employee_id.id, {}, self.env)
+
+        contracts = self.env["hr.contract"].search(
+            [("employee_id", "=", payslip.employee_id.id)])
+
+        contract = contracts[0]
+
+        base_dic = {
+            "ps": payslip,
+            "categories": categories,
+            "payslip": payslip
+        }
+
+        local_dic = dict(base_dic, contract=contract)
+        calc_rules = CalcRules()
+        # rule_amount = 0
+        for rule in rules:
+            amount, qty, rate = rule.compute_rule(local_dic)
+            total_amount = amount * qty * rate / 100
+            # rule_amount += total_amount
+            calc_rules.addRule(rule.code, total_amount)
+
+        return calc_rules
+
+    @api.model
+    def calc_imss(self):
+        self.ensure_one()
+        [data] = self.read()
+
+        GRAND_TOTAL = 0
+        SMGVDF = 80.04
+        SBC = self.calc_SDI()
+
+        DIAS_LABORADOS = data.get("worked_days", 0)
+
+        # cuota fija
+        # (SMGVDF * porcentaje_obrero)*dias_laborados
+        [cuota_fija_rec] = self.env.ref("dg_nomina.dg_imss_table_2").read()
+        cuota_fija = cuota_fija_rec.get("cuota_obrera", 0)
+        cuota_fija = cuota_fija * 10E-3
+        cuota_fija += ((1 * SMGVDF) * cuota_fija) * DIAS_LABORADOS
+        _logger.info("************************ CUOTA FIJA: %s" % (cuota_fija))
+        GRAND_TOTAL += cuota_fija
+
+        # cuota adicional
+        # ((SBC - (3 * SMVDF)) * porcentaje_obrero) * DIAS_LABORADOS
+        [cuota_adic_rec] = self.env.ref("dg_nomina.dg_imss_table_3").read()
+        cuota_adic = cuota_adic_rec.get("cuota_obrera", 0)
+        cuota_adic = cuota_adic * 10E-3
+        cuota_adic = ((SBC - (SMGVDF * 3)) * cuota_adic) * DIAS_LABORADOS
+        cuota_adic = math.ceil(cuota_adic * 100) * 10E-3
+        _logger.info("******************* CUOTA ADICIONAL: %s" % (cuota_adic))
+        GRAND_TOTAL += 0 if cuota_adic < 0 else cuota_adic
+
+        # Prestaciones en Dinero
+        [presta_dinero_rec] = self.env.ref("dg_nomina.dg_imss_table_4").read()
+        presta_dinero = presta_dinero_rec.get("cuota_obrera", 0)
+        presta_dinero = presta_dinero * 10E-3
+        presta_dinero = (SBC * presta_dinero) * DIAS_LABORADOS
+        presta_dinero = math.ceil(presta_dinero * 100) * 10E-3
+        _logger.info("********************* PREST. DINERO: %s" %
+                     (presta_dinero))
+        GRAND_TOTAL += presta_dinero
+
+        # Pensionados y Beneficiarios
+        [pen_ben_rec] = self.env.ref("dg_nomina.dg_imss_table_5").read()
+        pen_ben = pen_ben_rec.get("cuota_obrera", 0)
+        pen_ben *= 10E-3
+        pen_ben = (SBC * pen_ben) * DIAS_LABORADOS
+        pen_ben = math.ceil(pen_ben * 100) * 10E-3
+        _logger.info("********************** PEN. y BENEF: %s" % (pen_ben))
+        GRAND_TOTAL += pen_ben
+
+        # Invalidez y Vida
+        [inv_vida_rec] = self.env.ref("dg_nomina.dg_imss_table_6").read()
+        inv_vida = inv_vida_rec.get("cuota_obrera", 0)
+        inv_vida *= 10E-3
+        inv_vida = (SBC * inv_vida) * DIAS_LABORADOS
+        inv_vida = math.ceil(inv_vida * 100) * 10E-3
+        _logger.info("*********************** INV. Y VIDA: %s" % (inv_vida))
+        GRAND_TOTAL += inv_vida
+
+        # Guarderias y Prestaciones Sociales
+        [guarderias_rec] = self.env.ref("dg_nomina.dg_imss_table_9").read()
+        guarderias = guarderias_rec.get("cuota_obrera", 0)
+        guarderias *= 10E-3
+        guarderias = (SBC * guarderias) * DIAS_LABORADOS
+        guarderias = math.ceil(guarderias * 100) * 10E-3
+        _logger.info("*************** GUARD. Y PREST. SOC: %s" % (guarderias))
+        GRAND_TOTAL += guarderias
+
+        # Retiro
+        [retiro_rec] = self.env.ref("dg_nomina.dg_imss_table_7").read()
+        retiro = retiro_rec.get("cuota_obrera", 0)
+        retiro *= 10E-3
+        retiro = (SBC * retiro) * DIAS_LABORADOS
+        retiro = math.ceil(retiro * 100) * 10E-3
+        _logger.info("**************************** RETIRO: %s" % (retiro))
+        GRAND_TOTAL += retiro
+
+        # Cesantia y Vejez
+        [vejez_rec] = self.env.ref("dg_nomina.dg_imss_table_8").read()
+        vejez = vejez_rec.get("cuota_obrera", 0)
+        vejez *= 10E-3
+        vejez = (SBC * vejez) * DIAS_LABORADOS
+        vejez = math.ceil(vejez * 100) * 10E-3
+        _logger.info("****************** CESANTIA Y VEJEZ: %s" % (vejez))
+        GRAND_TOTAL += vejez
+
+        # VIVIENDA
+        [vivienda_rec] = self.env.ref("dg_nomina.dg_imss_table_10").read()
+        vivienda = vivienda_rec.get("cuota_obrera", 0)
+        vivienda *= 10E-3
+        vivienda = (SBC * vivienda) * DIAS_LABORADOS
+        vivienda = math.ceil(vivienda * 100) * 10E-3
+        _logger.info("************************** VIVIENDA: %s" % (vivienda))
+        GRAND_TOTAL += vivienda
+
+        return GRAND_TOTAL
+
+    @api.model
+    def calc_isr(self):
+
+        total_gravable = self.calc_sal_gravable()
+        periodicidad = 2
+
+        self.env.cr.execute("""
+            SELECT * FROM dg_nom_payroll_isr
+                where dg_nom_limite_inferior <= %s and
+                (dg_nom_limite_superior >= %s or dg_nom_limite_superior = 0)
+                and dg_nom_tipo = '%s'
+            """, (total_gravable, total_gravable, periodicidad))
+
+        isr_data = self.env.cr.dictfetchone()
+
+        base_gravable = total_gravable - isr_data['dg_nom_limite_inferior']
+        porcentaje_excedente = isr_data['dg_nom_excedente']
+        cuota_fija = isr_data['dg_nom_cuota_fija']
+
+        return ((base_gravable) * porcentaje_excedente) + cuota_fija
 
     @api.model
     def get_payslip_lines(self, contract_ids, payslip_id):
@@ -16,15 +211,6 @@ class HrPayslip(models.Model):
                 amount += localdict['categories'].dict[category.code]
             localdict['categories'].dict[category.code] = amount
             return localdict
-
-        class BrowsableObject(object):
-            def __init__(self, employee_id, dict, env):
-                self.employee_id = employee_id
-                self.dict = dict
-                self.env = env
-
-            def __getattr__(self, attr):
-                return attr in self.dict and self.dict.__getitem__(attr) or 0.0
 
         class InputLine(BrowsableObject):
             """a class that will be used into the python code,
@@ -107,7 +293,7 @@ class HrPayslip(models.Model):
 
         baselocaldict = {'categories': categories, 'rules': rules,
                          'payslip': payslips, 'worked_days': worked_days,
-                         'inputs': inputs}
+                         'inputs': inputs, 'ps': payslip}
         # get the ids of the structures on the contracts and their parent id as
         # well
         contracts = self.env['hr.contract'].browse(contract_ids)
@@ -171,6 +357,8 @@ class HrPayslip(models.Model):
                         'employee_id': contract.employee_id.id,
                         'quantity': qty,
                         'rate': rate,
+                        'code_sat': rule.code_sat,
+                        'rule_type': rule.rule_type
                     }
                 else:
                     # blacklist this rule and its children

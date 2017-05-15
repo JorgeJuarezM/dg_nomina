@@ -13,7 +13,9 @@
     ],
     'data': [
         'views/hr_payroll_views_inherit.xml',
-        'data/delete_hr_salary_rule_category_data.xml'
+        'data/delete_hr_salary_rule_category_data.xml',
+        'data/isr_data.xml',
+        'data/imss_data.xml',
     ],
     'active': False,
     'installable': True,

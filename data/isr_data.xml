@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <odoo>
+        <data noupdate="0">
+            
+            <!-- Diario -->
+            <record id="dg_isr_table_10" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">0.01</field>
+                <field name="dg_nom_limite_superior">16.32</field>
+                <field name="dg_nom_cuota_fija">0</field>
+                <field name="dg_nom_excedente">0.0192</field>
+                <field name="dg_nom_tipo">1</field>
+            </record>
+
+            <record id="dg_isr_table_11" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">16.33</field>
+                <field name="dg_nom_limite_superior">138.5</field>
+                <field name="dg_nom_cuota_fija">0.31</field>
+                <field name="dg_nom_excedente">0.064</field>
+                <field name="dg_nom_tipo">1</field>
+            </record>
+
+            <record id="dg_isr_table_12" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">138.51</field>
+                <field name="dg_nom_limite_superior">243.4</field>
+                <field name="dg_nom_cuota_fija">8.13</field>
+                <field name="dg_nom_excedente">0.1088</field>
+                <field name="dg_nom_tipo">1</field>
+            </record>
+
+            <record id="dg_isr_table_13" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">243.41</field>
+                <field name="dg_nom_limite_superior">282.94</field>
+                <field name="dg_nom_cuota_fija">19.55</field>
+                <field name="dg_nom_excedente">0.16</field>
+                <field name="dg_nom_tipo">1</field>
+            </record>
+
+            <record id="dg_isr_table_14" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">282.95</field>
+                <field name="dg_nom_limite_superior">338.76</field>
+                <field name="dg_nom_cuota_fija">25.87</field>
+                <field name="dg_nom_excedente">0.1792</field>
+                <field name="dg_nom_tipo">1</field>
+            </record>
+
+            <record id="dg_isr_table_15" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">338.77</field>
+                <field name="dg_nom_limite_superior">683.23</field>
+                <field name="dg_nom_cuota_fija">35.88</field>
+                <field name="dg_nom_excedente">0.2136</field>
+                <field name="dg_nom_tipo">1</field>
+            </record>
+
+            <record id="dg_isr_table_16" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">683.24</field>
+                <field name="dg_nom_limite_superior">1076.87</field>
+                <field name="dg_nom_cuota_fija">109.45</field>
+                <field name="dg_nom_excedente">0.2352</field>
+                <field name="dg_nom_tipo">1</field>
+            </record>
+
+            <record id="dg_isr_table_17" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">1076.88</field>
+                <field name="dg_nom_limite_superior">2055.92</field>
+                <field name="dg_nom_cuota_fija">202.04</field>
+                <field name="dg_nom_excedente">0.3</field>
+                <field name="dg_nom_tipo">1</field>
+            </record>
+
+            <record id="dg_isr_table_18" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">2055.93</field>
+                <field name="dg_nom_limite_superior">2741.23</field>
+                <field name="dg_nom_cuota_fija">495.75</field>
+                <field name="dg_nom_excedente">0.32</field>
+                <field name="dg_nom_tipo">1</field>
+            </record>
+
+            <record id="dg_isr_table_19" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">2741.24</field>
+                <field name="dg_nom_limite_superior">8223.68</field>
+                <field name="dg_nom_cuota_fija">715.05</field>
+                <field name="dg_nom_excedente">0.34</field>
+                <field name="dg_nom_tipo">1</field>
+            </record>
+
+            <record id="dg_isr_table_20" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">8223.69</field>
+                <field name="dg_nom_limite_superior">0</field>
+                <field name="dg_nom_cuota_fija">2579.09</field>
+                <field name="dg_nom_excedente">0.35</field>
+                <field name="dg_nom_tipo">1</field>
+            </record>
+
+            <!-- Semanal -->
+            <record id="dg_isr_table_21" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">0.01</field>
+                <field name="dg_nom_limite_superior">114.24</field>
+                <field name="dg_nom_cuota_fija">0</field>
+                <field name="dg_nom_excedente">0.0192</field>
+                <field name="dg_nom_tipo">2</field>
+            </record>
+
+            <record id="dg_isr_table_22" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">114.25</field>
+                <field name="dg_nom_limite_superior">969.5</field>
+                <field name="dg_nom_cuota_fija">2.17</field>
+                <field name="dg_nom_excedente">0.064</field>
+                <field name="dg_nom_tipo">2</field>
+            </record>
+
+            <record id="dg_isr_table_23" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">969.51</field>
+                <field name="dg_nom_limite_superior">1703.8</field>
+                <field name="dg_nom_cuota_fija">56.91</field>
+                <field name="dg_nom_excedente">0.1088</field>
+                <field name="dg_nom_tipo">2</field>
+            </record>
+
+            <record id="dg_isr_table_24" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">1703.81</field>
+                <field name="dg_nom_limite_superior">1980.58</field>
+                <field name="dg_nom_cuota_fija">136.85</field>
+                <field name="dg_nom_excedente">0.16</field>
+                <field name="dg_nom_tipo">2</field>
+            </record>
+
+            <record id="dg_isr_table_25" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">1980.59</field>
+                <field name="dg_nom_limite_superior">2371.32</field>
+                <field name="dg_nom_cuota_fija">181.09</field>
+                <field name="dg_nom_excedente">0.1792</field>
+                <field name="dg_nom_tipo">2</field>
+            </record>
+
+            <record id="dg_isr_table_26" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">2371.33</field>
+                <field name="dg_nom_limite_superior">4782.61</field>
+                <field name="dg_nom_cuota_fija">251.16</field>
+                <field name="dg_nom_excedente">0.2136</field>
+                <field name="dg_nom_tipo">2</field>
+            </record>
+
+            <record id="dg_isr_table_27" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">4782.62</field>
+                <field name="dg_nom_limite_superior">7538.09</field>
+                <field name="dg_nom_cuota_fija">766.15</field>
+                <field name="dg_nom_excedente">0.2352</field>
+                <field name="dg_nom_tipo">2</field>
+            </record>
+
+            <record id="dg_isr_table_28" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">7538.1</field>
+                <field name="dg_nom_limite_superior">14391.44</field>
+                <field name="dg_nom_cuota_fija">1414.28</field>
+                <field name="dg_nom_excedente">0.3</field>
+                <field name="dg_nom_tipo">2</field>
+            </record>
+
+            <record id="dg_isr_table_29" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">14391.45</field>
+                <field name="dg_nom_limite_superior">19188.61</field>
+                <field name="dg_nom_cuota_fija">3470.25</field>
+                <field name="dg_nom_excedente">0.32</field>
+                <field name="dg_nom_tipo">2</field>
+            </record>
+
+            <record id="dg_isr_table_30" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">19188.62</field>
+                <field name="dg_nom_limite_superior">57565.76</field>
+                <field name="dg_nom_cuota_fija">5005.35</field>
+                <field name="dg_nom_excedente">0.34</field>
+                <field name="dg_nom_tipo">2</field>
+            </record>
+
+            <record id="dg_isr_table_31" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">57565.77</field>
+                <field name="dg_nom_limite_superior">0</field>
+                <field name="dg_nom_cuota_fija">18053.63</field>
+                <field name="dg_nom_excedente">0.35</field>
+                <field name="dg_nom_tipo">2</field>
+            </record>
+
+            <!-- Decenal -->       
+            
+            <record id="dg_isr_table_32" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">0.01</field>
+                <field name="dg_nom_limite_superior">163.2</field>
+                <field name="dg_nom_cuota_fija">0</field>
+                <field name="dg_nom_excedente">0.0192</field>
+                <field name="dg_nom_tipo">3</field>
+            </record>
+
+            <record id="dg_isr_table_33" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">163.21</field>
+                <field name="dg_nom_limite_superior">1385</field>
+                <field name="dg_nom_cuota_fija">3.1</field>
+                <field name="dg_nom_excedente">0.064</field>
+                <field name="dg_nom_tipo">3</field>
+            </record>
+
+            <record id="dg_isr_table_34" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">1385.01</field>
+                <field name="dg_nom_limite_superior">2434</field>
+                <field name="dg_nom_cuota_fija">81.3</field>
+                <field name="dg_nom_excedente">0.1088</field>
+                <field name="dg_nom_tipo">3</field>
+            </record>
+
+            <record id="dg_isr_table_35" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">2434.01</field>
+                <field name="dg_nom_limite_superior">2829.4</field>
+                <field name="dg_nom_cuota_fija">195.5</field>
+                <field name="dg_nom_excedente">0.16</field>
+                <field name="dg_nom_tipo">3</field>
+            </record>
+
+            <record id="dg_isr_table_36" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">2829.41</field>
+                <field name="dg_nom_limite_superior">3387.6</field>
+                <field name="dg_nom_cuota_fija">258.7</field>
+                <field name="dg_nom_excedente">0.1792</field>
+                <field name="dg_nom_tipo">3</field>
+            </record>
+
+            <record id="dg_isr_table_37" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">3387.61</field>
+                <field name="dg_nom_limite_superior">6832.3</field>
+                <field name="dg_nom_cuota_fija">358.8</field>
+                <field name="dg_nom_excedente">0.2136</field>
+                <field name="dg_nom_tipo">3</field>
+            </record>
+
+            <record id="dg_isr_table_38" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">6832.31</field>
+                <field name="dg_nom_limite_superior">10768.7</field>
+                <field name="dg_nom_cuota_fija">1094.5</field>
+                <field name="dg_nom_excedente">0.2352</field>
+                <field name="dg_nom_tipo">3</field>
+            </record>
+
+            <record id="dg_isr_table_39" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">10768.71</field>
+                <field name="dg_nom_limite_superior">20559.2</field>
+                <field name="dg_nom_cuota_fija">2020.4</field>
+                <field name="dg_nom_excedente">0.3</field>
+                <field name="dg_nom_tipo">3</field>
+            </record>
+
+            <record id="dg_isr_table_40" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">20559.21</field>
+                <field name="dg_nom_limite_superior">27412.3</field>
+                <field name="dg_nom_cuota_fija">4957.5</field>
+                <field name="dg_nom_excedente">0.32</field>
+                <field name="dg_nom_tipo">3</field>
+            </record>
+
+            <record id="dg_isr_table_41" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">27412.31</field>
+                <field name="dg_nom_limite_superior">82236.8</field>
+                <field name="dg_nom_cuota_fija">7150.5</field>
+                <field name="dg_nom_excedente">0.34</field>
+                <field name="dg_nom_tipo">3</field>
+            </record>
+
+            <record id="dg_isr_table_42" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">82236.81</field>
+                <field name="dg_nom_limite_superior">0</field>
+                <field name="dg_nom_cuota_fija">25790.9</field>
+                <field name="dg_nom_excedente">0.35</field>
+                <field name="dg_nom_tipo">3</field>
+            </record>
+
+            <!-- Quincenal -->
+
+            <record id="dg_isr_table_43" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">0.01</field>
+                <field name="dg_nom_limite_superior">244.8</field>
+                <field name="dg_nom_cuota_fija">0</field>
+                <field name="dg_nom_excedente">0.0192</field>
+                <field name="dg_nom_tipo">4</field>
+            </record>
+
+            <record id="dg_isr_table_44" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">0244.81</field>
+                <field name="dg_nom_limite_superior">2077.5</field>
+                <field name="dg_nom_cuota_fija">4.65</field>
+                <field name="dg_nom_excedente">0.064</field>
+                <field name="dg_nom_tipo">4</field>
+            </record>
+
+            <record id="dg_isr_table_45" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">2077.51</field>
+                <field name="dg_nom_limite_superior">3651</field>
+                <field name="dg_nom_cuota_fija">121.95</field>
+                <field name="dg_nom_excedente">0.1088</field>
+                <field name="dg_nom_tipo">4</field>
+            </record>
+
+            <record id="dg_isr_table_46" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">3651.01</field>
+                <field name="dg_nom_limite_superior">4244.1</field>
+                <field name="dg_nom_cuota_fija">293.25</field>
+                <field name="dg_nom_excedente">0.16</field>
+                <field name="dg_nom_tipo">4</field>
+            </record>
+
+            <record id="dg_isr_table_47" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">4244.11</field>
+                <field name="dg_nom_limite_superior">5081.4</field>
+                <field name="dg_nom_cuota_fija">388.05</field>
+                <field name="dg_nom_excedente">0.1792</field>
+                <field name="dg_nom_tipo">4</field>
+            </record>
+
+            <record id="dg_isr_table_48" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">5081.41</field>
+                <field name="dg_nom_limite_superior">10248.45</field>
+                <field name="dg_nom_cuota_fija">538.2</field>
+                <field name="dg_nom_excedente">0.2136</field>
+                <field name="dg_nom_tipo">4</field>
+            </record>
+
+            <record id="dg_isr_table_49" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">10248.46</field>
+                <field name="dg_nom_limite_superior">16153.05</field>
+                <field name="dg_nom_cuota_fija">1641.75</field>
+                <field name="dg_nom_excedente">0.2352</field>
+                <field name="dg_nom_tipo">4</field>
+            </record>
+
+            <record id="dg_isr_table_50" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">16153.06</field>
+                <field name="dg_nom_limite_superior">30838.8</field>
+                <field name="dg_nom_cuota_fija">3030.6</field>
+                <field name="dg_nom_excedente">0.3</field>
+                <field name="dg_nom_tipo">4</field>
+            </record>
+
+            <record id="dg_isr_table_51" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">30838.81</field>
+                <field name="dg_nom_limite_superior">41118.45</field>
+                <field name="dg_nom_cuota_fija">7436.25</field>
+                <field name="dg_nom_excedente">0.32</field>
+                <field name="dg_nom_tipo">4</field>
+            </record>
+
+            <record id="dg_isr_table_52" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">41118.46</field>
+                <field name="dg_nom_limite_superior">123355.2</field>
+                <field name="dg_nom_cuota_fija">10725.75</field>
+                <field name="dg_nom_excedente">0.34</field>
+                <field name="dg_nom_tipo">4</field>
+            </record>
+
+            <record id="dg_isr_table_53" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">123355.21</field>
+                <field name="dg_nom_limite_superior">0</field>
+                <field name="dg_nom_cuota_fija">38686.35</field>
+                <field name="dg_nom_excedente">0.35</field>
+                <field name="dg_nom_tipo">4</field>
+            </record>
+
+            <!-- Mensual -->
+            
+            <record id="dg_isr_table_54" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">0.01</field>
+                <field name="dg_nom_limite_superior">496.07</field>
+                <field name="dg_nom_cuota_fija">0</field>
+                <field name="dg_nom_excedente">0.0192</field>
+                <field name="dg_nom_tipo">5</field>
+            </record> 
+
+            <record id="dg_isr_table_55" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">496.08</field>
+                <field name="dg_nom_limite_superior">4210.41</field>
+                <field name="dg_nom_cuota_fija">9.52</field>
+                <field name="dg_nom_excedente">0.064</field>
+                <field name="dg_nom_tipo">5</field>
+            </record>
+      
+            <record id="dg_isr_table_56" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">4210.42</field>
+                <field name="dg_nom_limite_superior">7399.42</field>
+                <field name="dg_nom_cuota_fija">247.24</field>
+                <field name="dg_nom_excedente">0.1088</field>
+                <field name="dg_nom_tipo">5</field>
+            </record>
+        
+            <record id="dg_isr_table_57" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">7399.43</field>
+                <field name="dg_nom_limite_superior">8601.5</field>
+                <field name="dg_nom_cuota_fija">594.21</field>
+                <field name="dg_nom_excedente">0.16</field>
+                <field name="dg_nom_tipo">5</field>
+            </record>
+         
+            <record id="dg_isr_table_58" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">8601.51</field>
+                <field name="dg_nom_limite_superior">10298.35</field>
+                <field name="dg_nom_cuota_fija">786.54</field>
+                <field name="dg_nom_excedente">0.1792</field>
+                <field name="dg_nom_tipo">5</field>
+            </record>
+           
+            <record id="dg_isr_table_59" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">10298.36</field>
+                <field name="dg_nom_limite_superior">20770.29</field>
+                <field name="dg_nom_cuota_fija">1090.61</field>
+                <field name="dg_nom_excedente">0.2136</field>
+                <field name="dg_nom_tipo">5</field>
+            </record>
+             
+            <record id="dg_isr_table_60" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">20770.3</field>
+                <field name="dg_nom_limite_superior">32736.83</field>
+                <field name="dg_nom_cuota_fija">3327.42</field>
+                <field name="dg_nom_excedente">0.2352</field>
+                <field name="dg_nom_tipo">5</field>
+            </record>
+          
+            <record id="dg_isr_table_61" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">32736.84</field>
+                <field name="dg_nom_limite_superior">62500</field>
+                <field name="dg_nom_cuota_fija">6141.95</field>
+                <field name="dg_nom_excedente">0.3</field>
+                <field name="dg_nom_tipo">5</field>
+            </record>
+            
+            <record id="dg_isr_table_62" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">62500.01</field>
+                <field name="dg_nom_limite_superior">83333.33</field>
+                <field name="dg_nom_cuota_fija">15070.9</field>
+                <field name="dg_nom_excedente">0.32</field>
+                <field name="dg_nom_tipo">5</field>
+            </record>
+
+            <record id="dg_isr_table_63" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">83333.34</field>
+                <field name="dg_nom_limite_superior">250000</field>
+                <field name="dg_nom_cuota_fija">21737.57</field>
+                <field name="dg_nom_excedente">0.34</field>
+                <field name="dg_nom_tipo">5</field>
+            </record>
+
+            <record id="dg_isr_table_64" model="dg.nom.payroll.isr">
+                <field name="dg_nom_limite_inferior">250000.01</field>
+                <field name="dg_nom_limite_superior">0</field>
+                <field name="dg_nom_cuota_fija">78404.23</field>
+                <field name="dg_nom_excedente">0.35</field>
+                <field name="dg_nom_tipo">5</field>
+            </record>
+        </data>
+    </odoo>      

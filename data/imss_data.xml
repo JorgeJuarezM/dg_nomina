@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        
+        <record id="dg_imss_table_1" model="dg.nom.payroll.imss">
+            <field name="concepto">Riesgos de Trabajo</field>
+            <field name="cuota_patronal">0</field>
+            <field name="cuota_obrera">0</field>
+            <field name="total">0</field>
+            <field name="base_salarial">0</field>      
+        </record>
+        
+        <record id="dg_imss_table_2" model="dg.nom.payroll.imss">
+            <field name="concepto">Cuota Fija por cada Trabajador hasta por tres VSMGVDF</field>
+            <field name="cuota_patronal">20.40</field>
+            <field name="cuota_obrera">0</field>
+            <field name="total">20.40</field>
+            <field name="base_salarial">SMGVDF</field>            
+        </record>
+        
+        <record id="dg_imss_table_3" model="dg.nom.payroll.imss">
+            <field name="concepto">Cuota adicional o excedente</field>
+            <field name="cuota_patronal">1.10</field>
+            <field name="cuota_obrera">0.40</field>
+            <field name="total">1.50</field>
+            <field name="base_salarial">SBC - (3 * SMGVDF)</field>            
+        </record>
+        
+        <record id="dg_imss_table_4" model="dg.nom.payroll.imss">
+            <field name="concepto">Prestaciones en dinero</field>
+            <field name="cuota_patronal">0.70</field>
+            <field name="cuota_obrera">0.25</field>
+            <field name="total">0.95</field>
+            <field name="base_salarial">SBC</field>           
+        </record>
+        
+        <record id="dg_imss_table_5" model="dg.nom.payroll.imss">
+            <field name="concepto">Gastos médicos para pensionarios y beneficiarios</field>
+            <field name="cuota_patronal">1.05</field>
+            <field name="cuota_obrera">0.375</field>
+            <field name="total">1.425</field>
+            <field name="base_salarial">SBC</field>          
+        </record>
+        
+        <record id="dg_imss_table_6" model="dg.nom.payroll.imss">
+            <field name="concepto">Invalidez y Vida</field>
+            <field name="cuota_patronal">1.75</field>
+            <field name="cuota_obrera">0.625</field>
+            <field name="total">2.375</field>
+            <field name="base_salarial">SBC</field>        
+        </record>
+        
+        <record id="dg_imss_table_7" model="dg.nom.payroll.imss">
+            <field name="concepto">Ramo de Retiro</field>
+            <field name="cuota_patronal">2</field>
+            <field name="cuota_obrera">0</field>
+            <field name="total">2</field>
+            <field name="base_salarial">SBC</field>         
+        </record>
+        
+        <record id="dg_imss_table_8" model="dg.nom.payroll.imss">
+            <field name="concepto">Ramo de Cesantía en Edad Avanzada y Vejez </field>
+            <field name="cuota_patronal">3.15</field>
+            <field name="cuota_obrera">1.125</field>
+            <field name="total">4.275</field>
+            <field name="base_salarial">SBC</field>         
+        </record>
+        
+        <record id="dg_imss_table_9" model="dg.nom.payroll.imss">
+            <field name="concepto">Guarderías y Prestaciones Sociales </field>
+            <field name="cuota_patronal">1</field>
+            <field name="cuota_obrera">0</field>
+            <field name="total">1</field>
+            <field name="base_salarial">SBC</field>         
+        </record>
+        
+        <record id="dg_imss_table_10" model="dg.nom.payroll.imss">
+            <field name="concepto">Vivienda</field>
+            <field name="cuota_patronal">5</field>
+            <field name="cuota_obrera">0</field>
+            <field name="total">5</field>
+            <field name="base_salarial">SBC</field>          
+        </record>
+
+    </data>
+</odoo>      

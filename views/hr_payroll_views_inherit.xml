@@ -64,6 +64,11 @@
 
                         <button name="action_hr_payslip_by_employees" type="object" string="Generate Payslips" class="oe_highlight" states="draft"/>
 
+
+                        <button name="action_hr_payslip_done" type="object" string="Confirm Payslips" class="oe_highlight" states="ready" />
+
+                        <button name="action_hr_payslip_close" type="object" string="Timbrar" class="oe_highlight" states="done" />
+
                         <field name="state" widget="statusbar"/>
                     </header>
                     <sheet>

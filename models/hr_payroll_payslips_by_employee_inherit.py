@@ -108,7 +108,7 @@ class HrPayslipEmployees(models.TransientModel):
                 'date_from': from_date,
                 'date_to': to_date,
                 'credit_note': run_data.get('credit_note'),
-                'worked_days': worked_days
+                'worked_days': worked_days,
             }
             payslips += self.env['hr.payslip'].create(res)
 
